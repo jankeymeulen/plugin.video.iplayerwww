@@ -43,9 +43,12 @@ ADDON = xbmcaddon.Addon(id='plugin.video.iplayerwww')
 DIR_USERDATA = xbmc.translatePath(__addoninfo__["profile"])
 cookie_jar = None
 
-proxies = {
-  "http": "http://192.168.1.15:3128",
-}
+proxies = {}
+if ADDON.getSetting('proxy_enabled') == 'true':
+    proxies = {
+        "http": "http://"+ADDON.getSetting('proxy_location')+":"+ADDON.getSetting('proxy_port'),
+        "https": "http://"+ADDON.getSetting('proxy_location')+":"+ADDON.getSetting('proxy_port')
+    }
 
 if(not os.path.exists(DIR_USERDATA)):
     os.makedirs(DIR_USERDATA)
