@@ -13,6 +13,11 @@
   <string id="30211">Catchup bitrate</string>
   <string id="30220">Live CDN source</string>
   <string id="30230">Live bitrate</string>
+  
+  <string id="30300">Proxy Server</string>
+  <string id="30305">Use HTTP(s) proxy?</string>
+  <string id="30310">Proxy hostname/ip</string>
+  <string id="30315">Proxy port</string>
 
   <string id="31000">Highlights</string>
   <string id="31001">Most Popular</string>
