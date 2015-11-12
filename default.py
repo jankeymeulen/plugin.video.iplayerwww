@@ -43,6 +43,9 @@ ADDON = xbmcaddon.Addon(id='plugin.video.iplayerwww')
 DIR_USERDATA = xbmc.translatePath(__addoninfo__["profile"])
 cookie_jar = None
 
+proxies = {
+  "http": "http://192.168.1.15:3128",
+}
 
 if(not os.path.exists(DIR_USERDATA)):
     os.makedirs(DIR_USERDATA)
@@ -842,7 +845,7 @@ def InitialiseCookieJar():
 def OpenURL(url):
     headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:38.0) Gecko/20100101 Firefox/41.0'}
     try:
-        r = requests.get(url, headers=headers, cookies=cookie_jar)
+        r = requests.get(url, headers=headers, cookies=cookie_jar, proxies=proxies)
     except requests.exceptions.RequestException as e:
         dialog = xbmcgui.Dialog()
         dialog.ok(translation(32000), "%s" % e)
@@ -864,7 +867,7 @@ def OpenURLPost(url, post_data):
                'Referer':'https://ssl.bbc.co.uk/id/signin',
                'Content-Type':'application/x-www-form-urlencoded'}
     try:
-        r = requests.post(url, headers=headers, data=post_data, allow_redirects=False, cookies=cookie_jar)
+        r = requests.post(url, headers=headers, data=post_data, allow_redirects=False, cookies=cookie_jar, proxies=proxies)
     except requests.exceptions.RequestException as e:
         dialog = xbmcgui.Dialog()
         dialog.ok(translation(32000), "%s" % e)
